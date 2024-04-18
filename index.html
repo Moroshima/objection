@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #image {
+        width: 100%;
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="image" src="./assets/Texture2D/etc00au.png" />
+    <audio
+      id="audio"
+      src="./assets/AudioClip-EN/se100.wav"
+      type="audio/wav"
+    ></audio>
+    <button
+      id="permission-button"
+      onclick="requestDeviceMotionEventPermission()"
+    >
+      Get Accelerometer Permissions
+    </button>
+    <button id="button" onclick="objection()">Objection!</button>
+    <p id="log">log here</p>
+    <script>
+      let log = document.getElementById("log");
+      console.log(log);
+      log.textContent = "on hold";
+
+      function requestDeviceMotionEventPermission() {
+        DeviceMotionEvent.requestPermission()
+          .then((response) => {
+            if (response == "granted") {
+              let prev_x = 0;
+              window.addEventListener("devicemotion", function (event) {
+                log.textContent = event.acceleration.x + " m/s2";
+                x = event.acceleration.x;
+                if(prev_x !== 0 && Math.abs(prev_x - x) > 0.1)
+                {
+                  objection();
+                }
+                prev_x = event.acceleration.x;
+              });
+            } else alert("Permission not granted");
+          })
+          .catch(console.error);
+      }
+      const audioElement = document.querySelector("audio");
+      const imageElement = document.getElementById("image");
+
+      function objection() {
+        audioElement.play();
+      }
+
+      audioElement.onplay = (event) => {
+        imageElement.style.visibility = "visible";
+      };
+
+      audioElement.onended = (event) => {
+        imageElement.style.visibility = "hidden";
+      };
+
+      function show() {}
+    </script>
+  </body>
+</html>
