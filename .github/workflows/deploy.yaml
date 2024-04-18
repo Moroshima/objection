@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Create dist folder
-        run: mkdir dist && cp index.html dist/index.html && cp -r assets dist/assets
+        run: rsync -av --exclude='dist' ./* dist/
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
