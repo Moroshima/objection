@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create annotation for build error
+      - name: Create dist folder
         run: mkdir dist && cp index.html dist/index.html && cp -r assets dist/assets
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=objection
+          workingDirectory: dist
+          command: pages deploy . --project-name=objection

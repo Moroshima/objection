@@ -1,0 +1,28 @@
+{
+  "short_name": "( ﾟДﾟ)_σ異議あり!!",
+  "name": "( ﾟДﾟ)_σ異議あり!! | Moroshima's Treasure Box",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "1558x1558"
+    },
+    {
+      "src": "/favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#FFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#fff",
+  "description": "Yet another Portable Objection"
+}
